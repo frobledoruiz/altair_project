@@ -1,0 +1,418 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <!-- Showcase-->
+    <section id="showcase-inner" class="py-5 text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1 class="display-4">{{ project.name }}</h1>
+                    <p class="lead">{{ project.city }} - {{ project.state }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb -->
+    <section id="bc" class="mt-3">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'projects' %}">
+                            <i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Proyectos</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Project Pictures -->
+    <section id="listing" class="py-2">
+        <div class="container">
+            <a href="{% url 'projects' %}" class="btn btn-light mb-4">Regreso a Proyectos</a>
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- Home Main Image -->
+                    <img src="{{ project.main_photo.url }}" alt="" class="img-main img-fluid mb-3">
+                    <!-- Thumbnails -->
+                    <div class="row mb-5 thumbs">
+                    
+                        <div class="col-md-2">
+                            <a href="img/image_1.jpg" data-lightbox="home-images">
+                                <img src="img/image_1.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    
+                        
+                        <div class="col-md-2">
+                            <a href="img/image_2.jpg" data-lightbox="home-images">
+                                <img src="img/image_2.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="img/image_3.jpg" data-lightbox="home-images">
+                                <img src="img/image_3.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="img/image_4.jpg" data-lightbox="home-images">
+                                <img src="img/image_4.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="img/image_5.jpg" data-lightbox="home-images">
+                                <img src="img/image_5.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="img/image_6.jpg" data-lightbox="home-images">
+                                <img src="img/image_6.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Fields -->
+                    <div class="row mb-5 fields">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-secondary">
+                                    <i class="fas fa-clock"></i> Avance:
+                                    <span class="float-right">A tiempo</span>
+                                </li>
+                                <li class="list-group-item text-secondary">
+                                    <i class="fas fa-money-bill-wave-alt"></i> Ejecución:
+                                    <span class="float-right">Según presupuesto</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-secondary">
+                                    <i class="fas fa-glasses"></i> Residente:
+                                    <span class="float-right">Jaime Gómez</span>
+                                </li>
+                                <li class="list-group-item text-secondary">
+                                    <i class="fas fa-calendar"></i> Fecha reporte:
+                                    <span class="float-right">8/30/2018</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Description -->
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae esse
+                            reiciendis officia omnis non rerum dicta
+                            cupiditate nostrum molestias deserunt aut minus inventore animi atque, consequuntur ad
+                            fugit. Possimus culpa
+                            blanditiis repellendus ipsa similique ullam, natus error dolor harum.
+                        </div>
+                    </div>
+
+                    <!-- Graphs and Budget-->
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <h4>Gantt</h4>
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <!--Gant Chart-->
+
+                                    <div id="container" class="col-md-12">
+                                        <script src="http://code.highcharts.com/gantt/highcharts-gantt.js"></script>
+                                        <script>
+                                            // THE CHART
+                                            var today = new Date(),
+                                                day = 1000 * 60 * 60 * 24,
+                                                // Utility functions
+                                                dateFormat = Highcharts.dateFormat,
+                                                defined = Highcharts.defined,
+                                                isObject = Highcharts.isObject,
+                                                reduce = Highcharts.reduce;
+
+                                            // Set to 00:00:00:000 today
+                                            today.setUTCHours(0);
+                                            today.setUTCMinutes(0);
+                                            today.setUTCSeconds(0);
+                                            today.setUTCMilliseconds(0);
+                                            today = today.getTime();
+
+                                            Highcharts.ganttChart('container', {
+                                                series: [{
+                                                    name: 'Offices',
+                                                    data: [{
+                                                        name: 'New offices',
+                                                        id: 'new_offices',
+                                                        owner: 'Peter'
+                                                    }, {
+                                                        name: 'Prepare office building',
+                                                        id: 'prepare_building',
+                                                        parent: 'new_offices',
+                                                        start: today - (2 * day),
+                                                        end: today + (6 * day),
+                                                        completed: {
+                                                            amount: 0.2
+                                                        },
+                                                        owner: 'Linda'
+                                                    }, {
+                                                        name: 'Inspect building',
+                                                        id: 'inspect_building',
+                                                        dependency: 'prepare_building',
+                                                        parent: 'new_offices',
+                                                        start: today + 6 * day,
+                                                        end: today + 8 * day,
+                                                        owner: 'Ivy'
+                                                    }, {
+                                                        name: 'Passed inspection',
+                                                        id: 'passed_inspection',
+                                                        dependency: 'inspect_building',
+                                                        parent: 'new_offices',
+                                                        start: today + 9.5 * day,
+                                                        milestone: true,
+                                                        owner: 'Peter'
+                                                    }, {
+                                                        name: 'Relocate',
+                                                        id: 'relocate',
+                                                        dependency: 'passed_inspection',
+                                                        parent: 'new_offices',
+                                                        owner: 'Josh'
+                                                    }, {
+                                                        name: 'Relocate staff',
+                                                        id: 'relocate_staff',
+                                                        parent: 'relocate',
+                                                        start: today + 10 * day,
+                                                        end: today + 11 * day,
+                                                        owner: 'Mark'
+                                                    }, {
+                                                        name: 'Relocate test facility',
+                                                        dependency: 'relocate_staff',
+                                                        parent: 'relocate',
+                                                        start: today + 11 * day,
+                                                        end: today + 13 * day,
+                                                        owner: 'Anne'
+                                                    }, {
+                                                        name: 'Relocate cantina',
+                                                        dependency: 'relocate_staff',
+                                                        parent: 'relocate',
+                                                        start: today + 11 * day,
+                                                        end: today + 14 * day
+                                                    }]
+                                                }, {
+                                                    name: 'Product',
+                                                    data: [{
+                                                        name: 'New product launch',
+                                                        id: 'new_product',
+                                                        owner: 'Peter'
+                                                    }, {
+                                                        name: 'Development',
+                                                        id: 'development',
+                                                        parent: 'new_product',
+                                                        start: today - day,
+                                                        end: today + (11 * day),
+                                                        completed: {
+                                                            amount: 0.6,
+                                                            fill: '#e80'
+                                                        },
+                                                        owner: 'Susan'
+                                                    }, {
+                                                        name: 'Beta',
+                                                        id: 'beta',
+                                                        dependency: 'development',
+                                                        parent: 'new_product',
+                                                        start: today + 12.5 * day,
+                                                        milestone: true,
+                                                        owner: 'Peter'
+                                                    }, {
+                                                        name: 'Final development',
+                                                        id: 'finalize',
+                                                        dependency: 'beta',
+                                                        parent: 'new_product',
+                                                        start: today + 13 * day,
+                                                        end: today + 17 * day
+                                                    }, {
+                                                        name: 'Launch',
+                                                        dependency: 'finalize',
+                                                        parent: 'new_product',
+                                                        start: today + 17.5 * day,
+                                                        milestone: true,
+                                                        owner: 'Peter'
+                                                    }]
+                                                }],
+                                                tooltip: {
+                                                    pointFormatter: function () {
+                                                        var point = this,
+                                                            format = '%e. %b',
+                                                            options = point.options,
+                                                            completed = options.completed,
+                                                            amount = isObject(completed) ? completed.amount : completed,
+                                                            status = ((amount || 0) * 100) + '%',
+                                                            lines;
+
+                                                        lines = [{
+                                                            value: point.name,
+                                                            style: 'font-weight: bold;'
+                                                        }, {
+                                                            title: 'Start',
+                                                            value: dateFormat(format, point.start)
+                                                        }, {
+                                                            visible: !options.milestone,
+                                                            title: 'End',
+                                                            value: dateFormat(format, point.end)
+                                                        }, {
+                                                            title: 'Completed',
+                                                            value: status
+                                                        }, {
+                                                            title: 'Owner',
+                                                            value: options.owner || 'unassigned'
+                                                        }];
+
+                                                        return reduce(lines, function (str, line) {
+                                                            var s = '',
+                                                                style = (
+                                                                    defined(line.style) ? line.style : 'font-size: 0.8em;'
+                                                                );
+                                                            if (line.visible !== false) {
+                                                                s = (
+                                                                    '<span style="' + style + '">' +
+                                                                    (defined(line.title) ? line.title + ': ' : '') +
+                                                                    (defined(line.value) ? line.value : '') +
+                                                                    '</span><br/>'
+                                                                );
+                                                            }
+                                                            return str + s;
+                                                        }, '');
+                                                    }
+                                                },
+                                                title: {
+                                                    text: ''
+                                                },
+                                                xAxis: {
+                                                    currentDateIndicator: true,
+                                                    min: today - 3 * day,
+                                                    max: today + 18 * day
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <h4>Presupuesto</h4>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <!--Budget Chart-->
+
+                                    <div class="col-md-12">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">First</th>
+                                                    <th scope="col">Last</th>
+                                                    <th scope="col">Handle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Larry</td>
+                                                    <td>the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Contractor Info-->
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <img class="card-img-top" src="img/company_logo.png" alt="Seller of the month">
+                        <div class="card-body">
+                            <h5 class="card-title">Contratista</h5>
+                            <h6 class="text-secondary">Compañia Constructora Ltda</h6>
+                        </div>
+                    </div>
+                    <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Comentar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry Modal Form -->
+    <div class="modal fade" id="inquiryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inquiryModalLabel">Comentario</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="property_name" class="col-form-label">Estación:</label>
+                            <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="col-form-label">Detalle:</label>
+                            <textarea name="message" class="form-control"></textarea>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nombre:</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-form-label">Teléfono:</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+
+                        -->
+
+                        <hr>
+                        <input type="submit" value="Send" class="btn btn-block btn-secondary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
