@@ -8,8 +8,8 @@
         <div class="row text-center">
             <div class="col-md-12">
                 <h1 class="display-4">{{ project.name }}</h1>
-                <p class="lead">{{ project.city }} - {{ project.state }}</p>
-                <p class="lead">Zona: {{project.zone}}
+                <p class="lead">{{ project.get_city_display }}, {{ project.get_state_display }}</p>
+                <p class="lead"><strong>Zona:</strong> {{project.get_zone_display}}
                 </p>
             </div>
         </div>

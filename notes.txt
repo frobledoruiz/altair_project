@@ -1,0 +1,8 @@
+Jan 28, 2019
+- Clone gitHub
+- Create virtual environment (venv)
+- $ pip install django (2.1.5)
+- $ pip install pillow (5.4.1)
+- Anaconda was installed
+- conda was update (run as administrator)
+- $ conda install mysqlclient: succesfully installed

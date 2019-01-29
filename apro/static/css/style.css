@@ -1,5 +1,9 @@
 span {
-  color: #4b4b4b;
+  color: #029ac8;
+}
+
+.year span {
+  color: antiquewhite;
 }
 
 .btn-secondary {
