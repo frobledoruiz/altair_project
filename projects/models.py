@@ -12,11 +12,11 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     main_photo = models.ImageField(upload_to='photos/projects/%Y/%m')
     city = models.CharField(
-        max_length=30, choices=choices.CIUDADES_CHOICES, default='BOG')
+        max_length=30, choices=choices.city_choices, default='BOG')
     state = models.CharField(
-        max_length=30, choices=choices.DEPARTAMENTOS_CHOICES, default='CUN')
-    scope = models.CharField(max_length=50, choices=choices.SCOPE_CHOICES)
-    zone = models.CharField(max_length=4, choices=choices.ZONES_CHOICES)
+        max_length=30, choices=choices.state_choices, default='CUN')
+    scope = models.CharField(max_length=50, choices=choices.scope_choices)
+    zone = models.CharField(max_length=4, choices=choices.zone_choices)
     location_lat = models.FloatField()
     location_long = models.FloatField()
     is_active = models.BooleanField(default=False)

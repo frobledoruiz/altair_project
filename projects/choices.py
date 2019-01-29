@@ -1,11 +1,11 @@
-ZONES_CHOICES = (
+zone_choices= (
     ('nor', 'Norte'),
     ('cen', 'Centro'),
     ('sur', 'Sur'),
     ('all', 'Todas'),
 )
 
-SCOPE_CHOICES = (
+scope_choices= (
     ('fuel', 'Combustibles'),
     ('imag', 'Imagen'),
     ('cons', 'Consultoría'),
@@ -13,7 +13,7 @@ SCOPE_CHOICES = (
     ('desi', 'Diseños')
 )
 
-DEPARTAMENTOS_CHOICES = (
+state_choices= (
     ('ATL', 'Atlántico'),
     ('ANT', 'Antioquia'),
     ('BOL', 'Bolivar'),
@@ -25,7 +25,7 @@ DEPARTAMENTOS_CHOICES = (
     ('HUI', 'Huila'),
 )
 
-CIUDADES_CHOICES = (
+city_choices= (
     ('BAR', 'Barranquilla'),
     ('MED', 'Medellín'),
     ('CAR', 'Cartagena'),
