@@ -20,9 +20,9 @@ class Project(models.Model):
     location_lat = models.FloatField()
     location_long = models.FloatField()
     is_active = models.BooleanField(default=False)
-    budget_allocated = models.FloatField()
+    budget_allocated = models.IntegerField()
     dollar = models.FloatField()
-    goal_time = models.FloatField()
+    goal_time = models.IntegerField()
     contractor = models.ForeignKey(Contractor, on_delete=models.DO_NOTHING)
     project_manager = models.ForeignKey(
         ProjectManager, on_delete=models.DO_NOTHING)

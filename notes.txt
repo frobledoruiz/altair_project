@@ -6,3 +6,9 @@ Jan 28, 2019
 - Anaconda was installed
 - conda was update (run as administrator)
 - $ conda install mysqlclient: succesfully installed
+
+# windows use at __ini__.py
+import pymysql
+
+pymysql.install_as_MySQLdb()
+

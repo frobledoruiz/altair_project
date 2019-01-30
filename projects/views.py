@@ -30,26 +30,39 @@ def project(request, project_id):
 
 
 def search(request):
-    queryset_list = Project.objects.order_by('-list_date')
+    queryset_list = Project.objects.order_by('-create_date')
 
     # Keywords
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             queryset_list = queryset_list.filter(
-                description_icontains=keywords)
+                description__icontains=keywords)
 
     # City
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
-            queryset_list = queryset_list.filter(city_iexact=city)
+            queryset_list = queryset_list.filter(city__iexact=city)
 
     # State
     if 'state' in request.GET:
         state = request.GET['state']
         if state:
-            queryset_list = queryset_list.filter(state_iexact=state)
+            queryset_list = queryset_list.filter(state__iexact=state)
+
+    # Term of work, goal_time
+    if 'goal_time' in request.GET:
+        goal_time = request.GET['goal_time']
+        if goal_time:
+            queryset_list = queryset_list.filter(goal_time__lte=goal_time)
+
+    # Budget allocated
+    if 'budget_allocated' in request.GET:
+        budget_allocated = request.GET['budget_allocated']
+        if budget_allocated:
+            queryset_list = queryset_list.filter(
+                budget_allocated__lte=budget_allocated)
 
     context = {
         'state_choices': state_choices,

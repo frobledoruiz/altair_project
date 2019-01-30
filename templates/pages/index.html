@@ -20,12 +20,10 @@
                                 <label class="sr-only">Keywords</label>
                                 <input type="text" name="keywords" class="form-control" placeholder="Palabras (Canopy, island, etc)">
                             </div>
-
                             <div class="col-md-4 mb-3">
                                 <label class="sr-only">Tipo de Proyecto</label>
                                 <select name="scope" class="form-control">
                                     <option selected="true" disabled="disabled">Tipo (Todos)</option>
-                                    
                                     {% for key, value in scope_choices %}
                                        <option value="{{ key }}">{{ value | safe }}</option>
                                     {% endfor %}
@@ -45,17 +43,19 @@
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label class="sr-only">Presupuesto</label>
-                                <select name="bedrooms" class="form-control">
+                                <select name="budget_allocated" class="form-control">
                                     <option selected="true" disabled="disabled">Max Presupuesto (Todos)</option>
-                                    <option value="1">1</option>
-
+                                    {% for key, value in budget_choices  %}
+                                    <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <select name="price" class="form-control" id="type">
+                                <select name="goal_time" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Duración (Cualquiera)</option>
-                                    <option value="100000">$100,000</option>
-
+                                    {% for key, value in goaltime_choices  %}
+                                    <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -91,13 +91,11 @@
                         <div class="row py-2 text-secondary">
                             <div class="col-12">
                                 <i class="fas fa-calendar"></i> Duración: {{ project.goal_time }} days</div>
-
                         </div>
                         <div class="row py-2 text-secondary">
                             <div class="col-12">
                                 <i class="fas fa-list"></i> Presupuesto: ${{ project.budget_allocated | intcomma }}
                             </div>
-
                         </div>
                         <hr>
                         <div class="row py-2 text-secondary">
