@@ -2,7 +2,7 @@ from django.contrib.postgres import search
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, render
 
-from projects.choices import city_choices, scope_choices, state_choices, zone_choices
+from projects.choices import city_choices, scope_choices, state_choices, zone_choices, goaltime_choices, budget_choices
 
 from .models import Project
 
@@ -66,6 +66,9 @@ def search(request):
 
     context = {
         'state_choices': state_choices,
+        'budget_choices': budget_choices,
+        'scope_choices': scope_choices,
+        'goaltime_choices': goaltime_choices,
         'projects': queryset_list,
         'values': request.GET
     }

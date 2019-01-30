@@ -17,7 +17,7 @@ state_choices = (
     ('AMA',	'Amazonas'),
     ('ANT',	'Antioquia'),
     ('ARA',	'Arauca'),
-    ('ARC',	'Archipiela de San Andrés, Prov. y Sta Catalina'),
+    ('ARC',	'Archipielago de San Andrés, Prov. y Sta Catalina'),
     ('ATL',	'Atlántico'),
     ('BOL',	'Bolivar'),
     ('BOY',	'Boyacá'),
@@ -57,7 +57,7 @@ city_choices = (
     ('CAL', 'Cali'),
     ('PAS', 'Pasto'),
     ('VIL', 'Villavicencio'),
-    ('IBG', 'Ibague'),
+    ('IBG', 'Ibagué'),
 )
 
 budget_choices = (
@@ -70,7 +70,7 @@ budget_choices = (
     ('100000000', 'M$ 100'),
     ('200000000', 'M$ 200'),
     ('300000000', 'M$ 300'),
-    ('400000000', '+M$ 400'),
+    ('400000000', '<M$ 400'),
 )
 
 goaltime_choices = (
@@ -81,5 +81,5 @@ goaltime_choices = (
     ('35', '35 días'),
     ('40', '45 días'),
     ('50', '50 días'),
-    ('60', '+60 días'),
+    ('60', '<60 días'),
 )

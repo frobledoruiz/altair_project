@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load humanize %}
-
 {% block content %}
+<!-- Showcase-->
 <section id="showcase">
     <div class="container text-center">
         <div class="home-search p-5">
@@ -43,18 +43,18 @@
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label class="sr-only">Presupuesto</label>
-                                <select name="bedrooms" class="form-control">
+                                <select name="budget_allocated" class="form-control">
                                     <option selected="true" disabled="disabled">Max Presupuesto (Todos)</option>
                                     {% for key, value in budget_choices  %}
-                                    <option value="1">{{value}}</option>
+                                    <option value="{{key}}">{{value}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <select name="price" class="form-control" id="type">
+                                <select name="goal_time" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Duración (Cualquiera)</option>
                                     {% for key, value in goaltime_choices  %}
-                                    <option value="1">{{value}}</option>
+                                    <option value="{{key}}">{{value}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -77,108 +77,67 @@
               <i class="fas fa-home"></i> Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="{% url 'projects'%}">Browse Listings</a>
+            <a href="{% url 'projects'%}">Listado de búsqueda</a>
           </li>
-          <li class="breadcrumb-item active"> Search Results</li>
+          <li class="breadcrumb-item active"> Buscar resultados</li>
         </ol>
       </nav>
     </div>
   </section>
 
-    <section id="projects" class="py-4">
-        <div class="container">
-            <div class="row">       
-                <!-- Loop of Projects -->
-                {% if projects %}
-                {% for project in projects %}
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card listing-preview">
-                        <img class="card-img-top" src="{{ project.main_photo.url }}" alt="">
-                        <div class="card-img-overlay">
-                            <h2>
-                                <span class="badge badge-secondary text-white">92%</span>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="listing-heading text-center">
-                                <h4 class="text-primary">{{ project.name }}</h4>
-                                <p>
-                                    <i class="fas fa-map-marker text-secondary"></i> {{ project.get_city_display }}, {{ project.get_state_display }}</p>
-                            </div>
-                            <hr>
-                            <div class="row py-2 text-secondary">
+<!-- Projects -->
+<section id="listings" class="py-4">
+      <div class="container">
+          <div class="row">       
+              <!-- Loop of Projects -->
+              {% if projects %}
+              {% for project in projects %}
+              <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="card listing-preview">
+                      <img class="card-img-top" src="{{ project.main_photo.url }}" alt="">
+                      <div class="card-img-overlay">
+                          <h2>
+                              <span class="badge badge-secondary text-white">92%</span>
+                          </h2>
+                      </div>
+                      <div class="card-body">
+                          <div class="listing-heading text-center">
+                              <h4 class="text-primary">{{ project.name }}</h4>
+                              <p>
+                                  <i class="fas fa-map-marker text-secondary"></i> {{ project.get_city_display }}, {{ project.get_state_display }}</p>
+                          </div>
+                          <hr>
+                          <div class="row py-2 text-secondary">
+                              <div class="col-12">
+                                  <i class="fas fa-calendar"></i> Duración: {{ project.goal_time }} days</div>
+                          </div>
+                          <div class="row py-2 text-secondary">
                                 <div class="col-12">
-                                    <i class="fas fa-calendar"></i> Duración: {{ project.goal_time }} days</div>
-
-                            </div>
-                            <div class="row py-2 text-secondary">
+                                  <i class="fas fa-list"></i> Presupuesto: ${{ project.budget_allocated | intcomma }} 
+                                </div>
+                          </div>
+                          <hr>
+                          <div class="row py-2 text-secondary">
+                              <div class="col-12">
+                                  <i class="fas fa-user"></i> {{ project.contractor }}</div>
+                          </div>
+                          <div class="row text-secondary pb-2">
                                 <div class="col-12">
-                                    <i class="fas fa-list"></i> Presupuesto: ${{ project.budget_allocated | intcomma }} </div>
-
-                            </div>
-                            <hr>
-                            <div class="row py-2 text-secondary">
-                                <div class="col-12">
-                                    <i class="fas fa-user"></i> {{ project.contractor }}</div>
-                            </div>
-                            <div class="row text-secondary pb-2">
-                                <div class="col-12">
-                                    <i class="fas fa-clock"></i> {{ project.create_date | timesince }}</div>
-                            </div>
-                            <hr>
-                            <a href="{% url 'project' project.id %}" class="btn btn-primary btn-block">Más Info</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-                {% else %}
-                <div class="col-md-12">
-                    <p>No hay proyectos Disponibles</p>
-                </div>
-                {% endif %}
-
+                                  <i class="fas fa-clock"></i> {{ project.create_date | timesince }}</div>
+                          </div>
+                          <hr>
+                          <a href="{% url 'project' project.id %}" class="btn btn-primary btn-block">Más Info</a>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+              {% else %}
+              <div class="col-md-12">
+                  <p>No hay proyectos Disponibles</p>
+              </div>
+              {% endif %}
 
             </div>
-
+</section>
     
-    <!-- Pagination-->
-    <div class="row">
-      <div class="col-md-12">
-      {% if projects.has_other_pages %}
-        <ul class="pagination">
-          {% if projects.has_previous %}
-            <li class="page-item">
-              <a href="?page={{projects.previous_page_number}}" class="page-link">&laquo;</a>
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <a class="page-link">&laquo;</a>
-            </li>
-          {% endif %}
-          {% for i in projects.paginator.page_range %}
-            {% if projects.number == i %}
-              <li class="page-item active">
-                <a class="page-link">{{i}}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a href="?page={{i}}" class="page-link">{{i}}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-          {% if projects.has_next %}
-            <li class="page-item">
-              <a href="?page={{projects.next_page_number}}" class="page-link">&raquo;</a>
-            </li>
-          {% else %}
-            <li class="page-item disabled">
-              <a class="page-link">&raquo;</a>
-            </li>
-          {% endif %}
-        </ul>
-      {% endif %}
-      </div>
-    </div>
-        </div>
-    </section>
 {% endblock content %}
