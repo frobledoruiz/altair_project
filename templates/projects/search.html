@@ -25,7 +25,11 @@
                                 <select name="scope" class="form-control">
                                     <option selected="true" disabled="disabled">Tipo (Todos)</option>
                                     {% for key, value in scope_choices %}
-                                       <option value="{{ key }}">{{ value | safe }}</option>
+                                       <option value="{{ key }}"
+                                       {% if key == values.scope %}
+                                        selected
+                                       {% endif %}
+                                       >{{ value | safe }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -34,7 +38,11 @@
                                 <select name="state" class="form-control">
                                     <option selected="true" disabled="disable">Departamento (Todos)</option>
                                     {% for key, value in state_choices %}
-                                       <option value="{{ key }}">{{ value | safe }}</option>
+                                       <option value="{{ key }}"
+                                       {% if key == values.state %}
+                                        selected
+                                       {% endif %}
+                                       >{{ value | safe }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -46,7 +54,11 @@
                                 <select name="budget_allocated" class="form-control">
                                     <option selected="true" disabled="disabled">Max Presupuesto (Todos)</option>
                                     {% for key, value in budget_choices  %}
-                                    <option value="{{key}}">{{value}}</option>
+                                    <option value="{{key}}"
+                                    {% if key == values.budget_allocated %}
+                                        selected
+                                       {% endif %}
+                                    >{{value}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -54,12 +66,16 @@
                                 <select name="goal_time" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Duración (Cualquiera)</option>
                                     {% for key, value in goaltime_choices  %}
-                                    <option value="{{key}}">{{value}}</option>
+                                    <option value="{{key}}"
+                                    {% if key == values.goal_time %}
+                                        selected
+                                       {% endif %}
+                                    >{{value}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                         </div>
-                        <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
+                        <button class="btn btn-secondary btn-block mt-4" type="submit">Buscar</button>
                     </form>
                 </div>
             </div>
@@ -77,9 +93,9 @@
               <i class="fas fa-home"></i> Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="{% url 'projects'%}">Listado de búsqueda</a>
+            <a href="{% url 'projects'%}">Proyectos</a>
           </li>
-          <li class="breadcrumb-item active"> Buscar resultados</li>
+          <li class="breadcrumb-item active"> Tablero</li>
         </ol>
       </nav>
     </div>

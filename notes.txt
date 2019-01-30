@@ -12,3 +12,50 @@ import pymysql
 
 pymysql.install_as_MySQLdb()
 
+
+models.py - projects
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+    main_photo = models.ImageField(upload_to='photos/projects/%Y/%m')
+    city = models.CharField(
+        max_length=30, choices=choices.city_choices, default='BOG')
+    state = models.CharField(
+        max_length=30, choices=choices.state_choices, default='CUN')
+    scope = models.CharField(max_length=50, choices=choices.scope_choices)
+    zone = models.CharField(max_length=4, choices=choices.zone_choices)
+    location_lat = models.FloatField()
+    location_long = models.FloatField()
+    is_active = models.BooleanField(default=False)
+    budget_allocated = models.IntegerField()
+    dollar = models.FloatField()
+    goal_time = models.IntegerField()
+    contractor = models.ForeignKey(Contractor, on_delete=models.DO_NOTHING)
+    project_manager = models.ForeignKey(
+        ProjectManager, on_delete=models.DO_NOTHING)
+    is_published = models.BooleanField(default=True)
+    create_date = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+class GanttImage(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
+    fascia_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    spreader_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    paint_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    signage_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    fundation_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    lifting_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    report_date = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.report_date
+
+views.py - projects
+ListView GanttImage(ListView)  
+template_name = 'projects/project.html'
+context_object_name = 'gantt'
+
+def get_queryset(self):
+    project = get_object_or_404(Project, name=self.kwargs.get('name'))
+    gantt = GanttImage.objects.filter(project=project).latest('reporte_date')

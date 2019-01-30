@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 
 from projects.choices import city_choices, scope_choices, state_choices, zone_choices, goaltime_choices, budget_choices
 
-from .models import Project
+from .models import Project, GanttImage
 
 
 def index(request):
@@ -64,6 +64,12 @@ def search(request):
             queryset_list = queryset_list.filter(
                 budget_allocated__lte=budget_allocated)
 
+    # Scope of Project (i.e design, fuels, image)
+    if 'scope' in request.GET:
+        scope = request.GET['scope']
+        if scope:
+            queryset_list = queryset_list.filter(scope__iexact=scope)
+
     context = {
         'state_choices': state_choices,
         'budget_choices': budget_choices,
@@ -73,3 +79,11 @@ def search(request):
         'values': request.GET
     }
     return render(request, 'projects/search.html', context)
+
+
+def ganttimage(request):
+    context = {
+            'ganttimage': 'Esto es gantt'
+        }
+    return render(request, 'projects/ganttimage.html', context)
+

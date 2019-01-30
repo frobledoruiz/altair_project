@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Project
+from .models import Project, GanttImage
 
 
 class ProjectAdmin(admin.ModelAdmin):
@@ -14,4 +14,11 @@ class ProjectAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
+class GanttImageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'project', 'report_date')
+    list_display_links = ('id', 'project')
+    list_per_page = 25
+
+
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(GanttImage, GanttImageAdmin)

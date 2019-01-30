@@ -31,3 +31,18 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class GanttImage(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING)
+    fascia_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    spreader_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    paint_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    signage_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    fundation_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    lifting_completion = models.DecimalField(max_digits=3, decimal_places=2)
+    report_date = models.DateTimeField(default=datetime.now, blank=True)
+
+    def __str__(self):
+        return self.report_date
+
