@@ -68,5 +68,6 @@ class GanttImage(models.Model):
     lifting_completion = models.DecimalField(max_digits=3, decimal_places=2)
     report_date = models.DateTimeField(default=datetime.now, blank=True)
 
+    
     def __str__(self):
         return str(self.report_date)
