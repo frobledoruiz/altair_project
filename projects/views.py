@@ -22,9 +22,11 @@ def index(request):
 
 def project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
-
+    ganttimage = get_object_or_404(
+        GanttImage, pk=project_id).latest('report_date')
     context = {
-        'project': project
+        'project': project,
+        'ganttimage': ganttimage
     }
     return render(request, 'projects/project.html', context)
 
@@ -83,7 +85,6 @@ def search(request):
 
 def ganttimage(request):
     context = {
-            'ganttimage': 'Esto es gantt'
-        }
+        'ganttimage': 'Esto es gantt'
+    }
     return render(request, 'projects/ganttimage.html', context)
-

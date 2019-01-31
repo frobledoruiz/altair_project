@@ -86,3 +86,13 @@ goaltime_choices = (
     ('50', '50 días'),
     ('60', '<60 días'),
 )
+
+ganttimage_choices = {
+    (' ', 'Sin prescedencia'),
+    ('fas', 'Fascia'),
+    ('spr', 'Spreader'),
+    ('pan', 'Pintura'),
+    ('sig', 'Rótulos'),
+    ('fun', 'Cimentación'),
+    ('lif', 'Izaje')
+}

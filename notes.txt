@@ -52,10 +52,10 @@ class GanttImage(models.Model):
         return self.report_date
 
 views.py - projects
-ListView GanttImage(ListView)  
-template_name = 'projects/project.html'
-context_object_name = 'gantt'
+ListView GanttImage(ListView) : 
+    template_name = 'projects/project.html'
+    context_object_name = 'gantt'
 
-def get_queryset(self):
-    project = get_object_or_404(Project, name=self.kwargs.get('name'))
-    gantt = GanttImage.objects.filter(project=project).latest('reporte_date')
+    def get_queryset(self):
+        project = get_object_or_404(Project, name=self.kwargs.get('name'))
+        gantt = GanttImage.objects.filter(project=project).latest('reporte_date')
