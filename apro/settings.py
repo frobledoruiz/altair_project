@@ -83,9 +83,9 @@ WSGI_APPLICATION = 'apro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_apro',  #windows sys / mac db_apro
+        'NAME': 'sys',  #windows sys / mac db_apro
         'USER': 'root',
-        'PASSWORD': 'r0bl3d0Ruiz', # root
+        'PASSWORD': 'root', # root
         'HOST': 'localhost',
         'PORT': '3306',
     }

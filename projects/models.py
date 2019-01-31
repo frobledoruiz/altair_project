@@ -35,23 +35,23 @@ class Project(models.Model):
     fascia_start = models.DateTimeField(default=datetime.now, blank=True)
     fascia_end = models.DateTimeField(default=datetime.now, blank=True)
     fascia_parent = models.CharField(
-        default=' ', max_length=4, choices=choices.ganttimage_choices)
+        default='', max_length=20, choices=choices.ganttimage_choices)
     paint_start = models.DateTimeField(default=datetime.now, blank=True)
     paint_end = models.DateTimeField(default=datetime.now, blank=True)
     paint_parent = models.CharField(
-        default=' ', max_length=20, choices=choices.ganttimage_choices)
+        default='', max_length=20, choices=choices.ganttimage_choices)
     signage_start = models.DateTimeField(default=datetime.now, blank=True)
     signage_end = models.DateTimeField(default=datetime.now, blank=True)
     signage_parent = models.CharField(
-        default=' ', max_length=20, choices=choices.ganttimage_choices)
+        default='', max_length=20, choices=choices.ganttimage_choices)
     fundation_start = models.DateTimeField(default=datetime.now, blank=True)
     fundation_end = models.DateTimeField(default=datetime.now, blank=True)
     fundation_parent = models.CharField(
-        default=' ', max_length=20, choices=choices.ganttimage_choices)
-    lifting_star = models.DateTimeField(default=datetime.now, blank=True)
+        default='', max_length=20, choices=choices.ganttimage_choices)
+    lifting_start = models.DateTimeField(default=datetime.now, blank=True)
     lifting_end = models.DateTimeField(default=datetime.now, blank=True)
     lifting_parent = models.CharField(
-        default=' ', max_length=20, choices=choices.ganttimage_choices)
+        default='', max_length=20, choices=choices.ganttimage_choices)
 
     def __str__(self):
         return self.name
@@ -69,4 +69,4 @@ class GanttImage(models.Model):
     report_date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
-        return self.report_date
+        return str(self.report_date)

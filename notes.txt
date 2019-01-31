@@ -59,3 +59,11 @@ ListView GanttImage(ListView) :
     def get_queryset(self):
         project = get_object_or_404(Project, name=self.kwargs.get('name'))
         gantt = GanttImage.objects.filter(project=project).latest('reporte_date')
+
+
+name: 'Instalación Spreaders',
+id: 'spr',
+dependency: '{{ project.spreader_parent}}',
+start: Date.parse("{{ project.spreader_start | date:"F n, j"}}"),
+end: Date.parse("{{ project.spreader_end | date:"F n, j"}}"),
+completed: {amount: {{ganttimage.spreader_completion}}},
