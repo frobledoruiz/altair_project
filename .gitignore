@@ -1,3 +1,5 @@
 venv
 mysqlclient-python
 note.text
+altair_project/apro/__init__.py
+apro/settings.py
