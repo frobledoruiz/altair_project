@@ -14,8 +14,10 @@ def index(request):
     paginator = Paginator(projects, 3)
     page = request.GET.get('page')
     paged_projects = paginator.get_page(page)
+    #ganttimage = GanttImage.objects.filter(project_id=projects.id).lates('reporte_date')
     context = {
-        'projects': paged_projects
+        'projects': paged_projects,
+        
     }
     return render(request, 'projects/projects.html', context)
 
@@ -23,6 +25,8 @@ def index(request):
 def project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     ganttimage = GanttImage.objects.filter(project_id=project_id).latest('report_date')
+    #ganttimage = get_object_or_404(GanttImage, project_id=project_id).latest('report_date')
+    
     context = {
         'project': project,
         'ganttimage': ganttimage

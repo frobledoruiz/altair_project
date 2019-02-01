@@ -1,5 +1,5 @@
-<div id="container" class="col-md-12">
-<h2>No hay Gant para mostrar</h2>
+<div id="gantt" >
+<p>No hay Gantt para mostrar</p>
     <script src="http://code.highcharts.com/gantt/highcharts-gantt.js"></script>
     <script>
         // THE CHART
@@ -16,45 +16,45 @@
         //today.setUTCSeconds(0);
         //today.setUTCMilliseconds(0);
         //today = today.get
-        console.log(Date.UTC("{{ project.fascia_start | date:"Y, m, d"}}"))
+        console.log(Date.UTC("{{ project.fascia_end | date:"D, d M Y H:i:s"}}"))
         console.log("{{ project.fascia_end | date:"Y, m, d"}}")
-        Highcharts.ganttChart('container', 
+        Highcharts.ganttChart('gantt', 
                         {series: [{
                                     name: 'Rebranding {{ project.name }}',
                                     data: [{
                                         name: 'Fascia',
                                         id: 'fas',
                                         dependency: '{{ ganttimage.fascia_parent}}',
-                                        start: Date.UTC("{{ project.fascia_start | date:"Y, m, d"}}"),
-                                        end: Date.UTC("{{ project.fascia_end | date:"Y, m, d"}}"),
+                                        start: Date.parse("{{ project.fascia_start | date:"Y, m, d"}}"),
+                                        end: Date.parse("{{ project.fascia_end | date:"Y, m, d"}}"),
                                         completed: {{ganttimage.fascia_completion}},
                                     },{
                                         name: 'Pintura Canopy',
                                         id: 'pan',
                                         dependency: '{{ project.paint_parent}}',
-                                        start: Date.UTC("{{ project.paint_start | date:"Y, m, d"}}"),
-                                        end: Date.UTC("{{ project.paint_end | date:"Y, m, d"}}"),
+                                        start: Date.parse("{{ project.paint_start | date:"Y, m, d"}}"),
+                                        end: Date.parse("{{ project.paint_end | date:"Y, m, d"}}"),
                                         completed: {{ganttimage.paint_completion}},
                                     },{
                                         name: 'Instalación rótulos',
                                         id: 'sig',
                                         dependency: '{{ project.signage_parent}}',
-                                        start: Date.UTC("{{ project.signage_start | date:"Y, m, d"}}"),
-                                        end: Date.UTC("{{ project.signage_end | date:"Y, m, d"}}"),
+                                        start: Date.parse("{{ project.signage_start | date:"Y, m, d"}}"),
+                                        end: Date.parse("{{ project.signage_end | date:"Y, m, d"}}"),
                                         completed: {{ganttimage.signage_completion}},
                                     },{
                                        name: 'Cimientos totem',
                                        id: 'fun',
                                        dependency: '{{ project.fundation_parent}}',
-                                       start: Date.UTC("{{ project.fundation_start | date:"Y, m, d"}}"),
-                                       end: Date.UTC("{{ project.fundation_end | date:"Y, m, d"}}"),
+                                       start: Date.parse("{{ project.fundation_start | date:"Y, m, d"}}"),
+                                       end: Date.parse("{{ project.fundation_end | date:"Y, m, d"}}"),
                                        completed: {{ganttimage.fundation_completion}},
                                     },{
                                       name: 'Izaje',
                                       id: 'lif',
                                       dependency: '{{ project.lifting_parent}}',
-                                      start: Date.UTC("{{ project.lifting_start | date:"Y, m, d"}}"),
-                                      end: Date.UTC("{{ project.lifting_end | date:"Y, m, d"}}"),
+                                      start: Date.parse("{{ project.lifting_start | date:"Y, m, d"}}"),
+                                      end: Date.parse("{{ project.lifting_end | date:"Y, m, d"}}"),
                                       completed: {{ganttimage.lifting_completion}},
                                     }]
                                 }],

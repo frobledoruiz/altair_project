@@ -41,7 +41,12 @@
                         <img class="card-img-top" src="{{ project.main_photo.url }}" alt="">
                         <div class="card-img-overlay">
                             <h2>
-                                <span class="badge badge-secondary text-white">92%</span>
+                                {% if project.is_published%}
+                                <span class="badge badge-success text-white">Activo</span>
+                                {% else %}
+                                <span class="badge badge-warning text-white">Inactivo</span>
+                                {%endif%}
+                                
                             </h2>
                         </div>
                         <div class="card-body">
